@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.containers.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://estimatesofrepairs.com/" name="DepotRepairServiceImplService" targetNamespace="http://soap.containers.com/">
+  <wsdl:import location="http://localhost:8080/containers-webservice/depotrepairservice?wsdl=DepotRepairPortType.wsdl" namespace="http://estimatesofrepairs.com/">
+    </wsdl:import>
+  <wsdl:binding name="DepotRepairServiceImplServiceSoapBinding" type="ns1:DepotRepairPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createRepair">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createRepair">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createRepairResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteRepair">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteRepair">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteRepairResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRepair">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRepair">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRepairResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DepotRepairServiceImplService">
+    <wsdl:port binding="tns:DepotRepairServiceImplServiceSoapBinding" name="DepotRepairServiceImplPort">
+      <soap:address location="http://localhost:8080/containers-webservice/depotrepairservice"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

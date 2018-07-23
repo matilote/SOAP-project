@@ -1,0 +1,95 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.estimatesservice.com/estimates-ws"
+	targetNamespace="http://www.estimatesservice.com/estimates-ws"
+	elementFormDefault="qualified">
+
+	<xs:element name="getEstimateRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="estimateId" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getEstimateResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="estimate" type="tns:estimate" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="estimate">
+		<xs:sequence>
+			<xs:element name="estimateId" type="xs:long"></xs:element>
+			<xs:element name="estimateNumber" type="xs:string"></xs:element>
+			<xs:element name="estimateDepot" type="xs:string"></xs:element>
+			<xs:element name="estimateDate" type="xs:date"></xs:element>
+			<xs:element name="estimateCurrency" type="xs:string"></xs:element>
+			<xs:element name="estimateAmount" type="xs:double"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="getAllEstimatesRequest">
+		<xs:complexType />
+	</xs:element>
+	<xs:element name="getAllEstimatesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="estimate" type="tns:estimate"
+					maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="serviceStatus">
+		<xs:sequence>
+			<xs:element name="statusCode" type="xs:string" />
+			<xs:element name="message" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="addEstimateRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="estimateNumber" type="xs:string"></xs:element>
+				<xs:element name="estimateDepot" type="xs:string"></xs:element>
+				<xs:element name="estimateDate" type="xs:date"></xs:element>
+				<xs:element name="estimateCurrency" type="xs:string"></xs:element>
+				<xs:element name="estimateAmount" type="xs:double"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="addEstimateResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="serviceStatus" type="tns:serviceStatus" />
+				<xs:element name="estimate" type="tns:estimate" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="updateEstimateRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="estimate" type="tns:estimate" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="updateEstimateResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="serviceStatus" type="tns:serviceStatus" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="deleteEstimateRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="estimateId" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="deleteEstimateResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="serviceStatus" type="tns:serviceStatus" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema> 

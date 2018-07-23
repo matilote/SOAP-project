@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="http://estimatesofrepairs.com/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+	name="EstimateOrdersService"
+	targetNamespace="http://estimatesofrepairs.com/">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://estimatesofrepairs.com/"
+			elementFormDefault="unqualified"
+			targetNamespace="http://estimatesofrepairs.com/" version="1.0">
+
+			<xs:complexType name="repair">
+				<xs:sequence>
+					<xs:element name="id" type="xs:integer" />
+					<xs:element maxOccurs="unbounded" name="estimate"
+						type="tns:estimate" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="estimate">
+				<xs:sequence>
+					<xs:element name="estimateId" minOccurs="1"
+						type="xs:int"></xs:element>
+					<xs:element name="estimateNumber" minOccurs="1"
+						type="xs:string"></xs:element>
+					<xs:element name="estimateDepot" minOccurs="1"
+						type="xs:string"></xs:element>
+					<xs:element name="estimateDate" minOccurs="1"
+						type="xs:date"></xs:element>
+					<xs:element name="estimateCurrency" minOccurs="1"
+						type="xs:string"></xs:element>
+					<xs:element name="estimateAmount" minOccurs="1"
+						type="xs:double"></xs:element>
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:element name="getRepairRequest"
+				type="tns:getRepairRequest" />
+
+			<xs:element name="getRepairResponse"
+				type="tns:getRepairResponse" />
+
+			<xs:complexType name="getRepairRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="depotId"
+						type="xs:integer" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="getRepairResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded"
+						name="repair" type="tns:repair" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:element name="createRepairRequest"
+				type="tns:createRepairRequest" />
+
+			<xs:element name="createRepairResponse"
+				type="tns:createRepairResponse" />
+
+			<xs:complexType name="createRepairRequest">
+				<xs:sequence>
+					<xs:element name="depotId" type="xs:integer" />
+					<xs:element name="repair" type="tns:repair" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="createRepairResponse">
+				<xs:sequence>
+					<xs:element name="result" type="xs:boolean" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:element name="deleteRepairRequest"
+				type="tns:deleteRepairRequest" />
+
+			<xs:element name="deleteRepairResponse"
+				type="tns:deleteRepairResponse" />
+
+			<xs:complexType name="deleteRepairRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="depotId"
+						type="xs:integer" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="deleteRepairResponse">
+				<xs:sequence>
+					<xs:element name="result" type="xs:boolean" />
+				</xs:sequence>
+			</xs:complexType>
+
+		</xs:schema>
+	</wsdl:types>
+
+	<wsdl:message name="getRepairRequest">
+		<wsdl:part element="tns:getRepairRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getRepairResponse">
+		<wsdl:part element="tns:getRepairResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="createRepairRequest">
+		<wsdl:part element="tns:createRepairRequest"
+			name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="createRepairResponse">
+		<wsdl:part element="tns:createRepairResponse"
+			name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="deleteRepairRequest">
+		<wsdl:part element="tns:deleteRepairRequest"
+			name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="deleteRepairResponse">
+		<wsdl:part element="tns:deleteRepairResponse"
+			name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="DepotRepairPortType">
+		<wsdl:operation name="getRepair">
+			<wsdl:input message="tns:getRepairRequest"
+				name="getRepairRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:getRepairResponse"
+				name="getRepairResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createRepair">
+			<wsdl:input message="tns:createRepairRequest"
+				name="createRepairRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:createRepairResponse"
+				name="createRepairResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteRepair">
+			<wsdl:input message="tns:deleteRepairRequest"
+				name="deleteRepairRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:deleteRepairResponse"
+				name="deleteRepairResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="DepotRepairServiceSoapBinding"
+		type="tns:DepotRepairPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getRepair">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getRepairRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getRepairResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createRepair">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="createRepairRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="createRepairResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteRepair">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="deleteRepairRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="deleteRepairResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="DepotRepairService">
+		<wsdl:port binding="tns:DepotRepairServiceSoapBinding"
+			name="DepotRepairPort">
+			<soap:address
+				location="http://localhost:8080/containers-webservice/services/estimateOrdersService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
